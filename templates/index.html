@@ -4,8 +4,9 @@
 <form method="post">
     <div class="form-group">
         <label for="url">URL</label>
+        {{ request.form['url'] }}
         <input autofocus class="form-control"
-               name="url" placeholder="URL to shorten" id="url"
+               id="url" name="url" placeholder="URL to shorten"
                type="text" value="{{ request.form['url'] }}"></input>
     </div>
 
@@ -16,6 +17,12 @@
 
 {% if short_url %}
 <hr>
-<span>{{ short_url }}</span>
+<div class="form-group">
+    <label for="short-url"><strong>Short URL</strong></label>
+    <input autofocus class="form-control"
+           id="short-url" name="url"
+           type="text" value="{{ short_url }}"></input>
+</div>
+
 {% endif %}
 {% endblock %}
