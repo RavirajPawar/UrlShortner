@@ -15,9 +15,13 @@ def index():
             if url in mapping_url:
                 return render_template('index.html', short_url=mapping_url[url])
             else:
-                mapping_url[url] = response_from_cuttly['shortLink']
+                if "shortLink" in response_from_cuttly:
+                    mapping_url[url] = response_from_cuttly['shortLink']
+                else:
+                    mapping_url[url] = "You are passing localhost's URL"
+                    
                 short_url_collection(mapping_url, update=True)
-                return render_template('index.html', short_url=response_from_cuttly['shortLink'])
+                return render_template('index.html', short_url=mapping_url[url])
         else:
             flash("Please Enter Valid Url")
             return render_template('index.html', short_url=url)
@@ -26,4 +30,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host= "0.0.0.0")
