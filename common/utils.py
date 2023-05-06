@@ -13,7 +13,7 @@ def is_valid_url(url):
     """
     try:
         result = urlparse(url)
-        logger.info(f"scheme:\t{result.scheme} netloc:\t{result.netloc}")
+        logger.info(f"scheme:{result.scheme} \tnetloc:{result.netloc}")
         return all([result.scheme, result.netloc])
 
     except Exception as e:
