@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 
-from resources.url import UrlShortner
+from resources.url_api import UrlShortner
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "LetsKeepItAsSecretBetweenYouAndMe"
