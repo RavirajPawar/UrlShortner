@@ -3,6 +3,7 @@ import time
 from flask import request, make_response
 from model.basic import UrlModel
 from common.constants import Constant
+from services.url_shortner import UrlShortnerService
 
 
 class UrlShortner(Resource):
@@ -22,4 +23,7 @@ class UrlShortner(Resource):
             response = make_response(error_response)
             response.status_code = Constant.BAD_REQUEST
             return response
+        short_url = UrlShortnerService().generate_short_url(data["long_url"])
+        data["short_url"] = short_url
+        data["request_timestamp"] = int(time.time())
         return data

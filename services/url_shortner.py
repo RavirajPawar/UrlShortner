@@ -1,12 +1,14 @@
 import pyshorteners
 from architecture.singleton import Singleton
 from logger import logger
+from common.utils import calculate_time
 
 
-class UrlShortner(metaclass=Singleton):
+class UrlShortnerService(metaclass=Singleton):
     def __init__(self):
         self.conn = pyshorteners.Shortener()
 
+    @calculate_time
     def generate_short_url(self, long_url):
         logger.info(f"got {long_url} for shorting")
         tmp = self.conn.tinyurl.short(long_url)
@@ -15,5 +17,4 @@ class UrlShortner(metaclass=Singleton):
 
 
 if __name__ == "__main__":
-    UrlShortner().generate_short_url("www.google.com")
-    
+    UrlShortnerService().generate_short_url("www.google.com")
