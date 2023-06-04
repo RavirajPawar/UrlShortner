@@ -1,8 +1,8 @@
 from flask_restful import Resource
+from http import HTTPStatus
 import time
-from flask import request, make_response
 from model.basic import UrlModel
-from common.constants import Constant
+from common.exceptions import BadRequest, InternalServerError
 from services.url_shortner import UrlShortnerService
 
 
@@ -11,19 +11,16 @@ class UrlShortner(Resource):
         return {"hello": "world"}
 
     def post(self):
-        data = request.get_json()
-        status, msg = UrlModel.load_data(data)
-        if not status:
-            error_response = {
-                "error_msg": "failed url validation.",
-                "explanation": msg,
-                "request_data": data,
-                "request_timestamp": int(time.time()),
-            }
-            response = make_response(error_response)
-            response.status_code = Constant.BAD_REQUEST
-            return response
-        short_url = UrlShortnerService().generate_short_url(data["long_url"])
-        data["short_url"] = short_url
-        data["request_timestamp"] = int(time.time())
-        return data
+        try:
+            valid = UrlModel.load_data()
+            short_url = UrlShortnerService().generate_short_url(valid.long_url)
+            response = dict()
+            response["long_url"] = valid.long_url
+            response["short_url"] = short_url
+            response["request_timestamp"] = int(time.time())
+            return response, HTTPStatus.OK
+        except BadRequest as e:
+            return e.error_response, e.error_code
+        except Exception as e:
+            e = InternalServerError(str(e))
+            return e.error_response, e.error_code

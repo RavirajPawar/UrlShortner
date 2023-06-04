@@ -1,0 +1,104 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "url-shortner",
+    "dateExported": "2023-06-04T08:02:31.572Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "ee63cb7f-5fc6-463f-a70c-8423d5ff88b5",
+            "colId": "6ae1e77f-50f5-47a6-a247-471a547341ce",
+            "containerId": "",
+            "name": "invalid request | missing req parameter",
+            "url": "localhost:5000/url-shortner",
+            "method": "POST",
+            "sortNum": 7500,
+            "created": "2023-05-07T07:02:24.586Z",
+            "modified": "2023-06-04T07:41:37.256Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "89f0d54a-6bc7-47ae-866e-6bc37867ffcc",
+            "colId": "6ae1e77f-50f5-47a6-a247-471a547341ce",
+            "containerId": "",
+            "name": "invalid request | extra parameter",
+            "url": "localhost:5000/url-shortner",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2023-05-07T07:02:19.113Z",
+            "modified": "2023-06-04T07:41:27.409Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"long_url\": \"www.google.com\",\n  \"a\": \"a\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7649f089-6bcc-4a80-a972-0d871a092c50",
+            "colId": "6ae1e77f-50f5-47a6-a247-471a547341ce",
+            "containerId": "",
+            "name": "invalid request | wrong url",
+            "url": "localhost:5000/url-shortner",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-05-06T17:27:52.861Z",
+            "modified": "2023-05-07T07:41:49.957Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"long_url\": \"www.google.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1df954f3-16ec-452e-8573-60d73bca519c",
+            "colId": "6ae1e77f-50f5-47a6-a247-471a547341ce",
+            "containerId": "",
+            "name": "invalid request | invalid json string",
+            "url": "localhost:5000/url-shortner",
+            "method": "POST",
+            "sortNum": 32500,
+            "created": "2023-06-04T08:01:39.983Z",
+            "modified": "2023-06-04T08:02:00.797Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"long_url\": \"www.google.com\",\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c5b19555-57f0-4f6b-ba9d-522aed05ff6c",
+            "colId": "6ae1e77f-50f5-47a6-a247-471a547341ce",
+            "containerId": "",
+            "name": "valid  request ",
+            "url": "localhost:5000/url-shortner",
+            "method": "POST",
+            "sortNum": 35000,
+            "created": "2023-05-07T07:41:41.297Z",
+            "modified": "2023-05-07T07:41:41.297Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"long_url\": \"http://www.google.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

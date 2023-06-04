@@ -1,6 +1,7 @@
 import time
 from logger import logger
 from common.constants import Constant
+from common.exceptions import BadRequest
 
 
 def calculate_time(inner_function):
@@ -26,9 +27,10 @@ def is_valid_url(url):
     """
     logger.info(f"validating regex for {url}")
     if Constant.URL_REGEX.match(url):
-        return True, "url is valid"
+        return True
     else:
-        return False, "check scheme, domain, ip or port missing from url"
+        message = "check scheme, domain, ip or port missing from url"
+        raise BadRequest(message=message)
 
 
 if __name__ == "__main__":
